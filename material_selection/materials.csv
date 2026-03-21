@@ -1,0 +1,69 @@
+Material,Category,Strength,Density,Temperature,Cost
+Steel,Metal,400,7850,1500,0.8
+Carbon Steel,Metal,450,7850,1450,0.9
+Alloy Steel,Alloy,700,7850,1500,1.5
+Stainless Steel,Alloy,520,8000,1400,3
+Tool Steel,Alloy,800,7700,1200,5
+Aluminum,Metal,300,2700,660,2.5
+Aluminum Alloy 6061,Alloy,310,2700,650,3
+Aluminum Alloy 7075,Alloy,570,2810,635,6
+Copper,Metal,210,8960,1085,9
+Brass,Alloy,350,8500,900,6
+Bronze,Alloy,300,8800,950,7
+Nickel,Metal,450,8900,1455,20
+Nickel Alloy,Alloy,750,8200,1350,25
+Inconel,Alloy,1000,8470,1400,60
+Titanium,Metal,900,4500,1660,12
+Titanium Alloy Ti6Al4V,Alloy,1100,4430,1660,35
+Magnesium,Metal,200,1740,650,3
+Magnesium Alloy,Alloy,275,1800,650,5
+Zinc,Metal,120,7130,420,3
+Lead,Metal,18,11340,327,2
+Silver,Metal,170,10490,962,800
+Gold,Metal,200,19320,1064,60000
+Tungsten,Metal,1510,19300,3422,40
+Molybdenum,Metal,550,10280,2623,35
+Cobalt,Metal,600,8900,1495,45
+Chromium,Metal,415,7190,1907,10
+Cast Iron,Metal,200,7200,1200,0.7
+Ductile Iron,Metal,400,7100,1200,1
+Gray Cast Iron,Metal,180,7100,1150,0.9
+White Cast Iron,Metal,250,7200,1200,1.2
+Carbon Fiber,Composite,3500,1750,1000,30
+Glass Fiber,Composite,2000,2500,800,5
+Kevlar,Composite,3620,1440,500,45
+Fiberglass,Composite,3450,2550,700,4
+Epoxy Resin,Composite,85,1200,150,8
+Polycarbonate,Composite,70,1200,140,4
+Nylon,Composite,85,1150,170,3
+ABS Plastic,Composite,40,1040,105,2
+PVC,Composite,52,1380,140,1.5
+PTFE (Teflon),Composite,30,2200,260,15
+PEEK,Composite,100,1320,300,70
+Polyethylene,Composite,37,950,110,1.5
+Polypropylene,Composite,35,900,130,1.6
+Ceramic Alumina,Ceramic,300,3950,2000,20
+Silicon Carbide,Ceramic,400,3210,2700,25
+Zirconia,Ceramic,900,5680,2400,40
+Boron Carbide,Ceramic,2800,2520,2350,120
+Concrete,Composite,40,2400,300,0.1
+Reinforced Concrete,Composite,60,2500,300,0.2
+Wood Oak,Composite,90,750,200,2
+Wood Pine,Composite,70,500,150,1
+Bamboo,Composite,160,700,200,0.5
+Graphite,Composite,20,2200,3650,10
+Aerogel,Composite,5,3,1200,200
+Titanium Aluminide,Alloy,880,4000,1500,80
+Superalloy Rene 41,Alloy,1200,8250,1350,120
+Maraging Steel,Alloy,2000,8000,480,25
+Spring Steel,Alloy,1500,7850,1200,2
+Hastelloy,Alloy,850,8900,1350,70
+Monel,Alloy,550,8800,1350,40
+Kovar,Alloy,450,8360,1400,35
+Nitinol,Alloy,900,6450,1300,200
+Beryllium,Metal,380,1850,1287,600
+Beryllium Copper,Alloy,1100,8250,900,40
+Aluminum Bronze,Alloy,600,7700,1040,12
+Silicon Bronze,Alloy,500,8800,1000,15
+Phosphor Bronze,Alloy,400,8900,950,14
+High Speed Steel,Alloy,1000,8150,1200,10
