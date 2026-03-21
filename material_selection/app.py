@@ -4,34 +4,37 @@ import os
 
 app = Flask(__name__)
 
-# Load data
-data = pd.read_csv("materials.csv")
+# ✅ Safe path for materials.csv (works everywhere)
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+file_path = os.path.join(BASE_DIR, "materials.csv")
+
+# Load data safely
+try:
+    data = pd.read_csv(file_path)
+except Exception as e:
+    print("CSV Load Error:", e)
+    data = pd.DataFrame(columns=["Material", "Strength", "Density", "Temperature"])
 
 
-# ✅ Improved Function (Filtering + Ranking)
+# ✅ Material Ranking Function (Filtering + Ranking)
 def rank_materials(df, strength_req, density_req, temp_req):
 
-    # 🔥 Step 1: Apply strict filtering
+    # Apply filtering
     filtered = df[
         (df["Strength"] >= strength_req) &
         (df["Density"] <= density_req) &
         (df["Temperature"] >= temp_req)
     ].copy()
 
-    # 🔁 If no materials match → fallback to all data
+    # If no match → fallback
     if filtered.empty:
         filtered = df.copy()
 
-    # 🔥 Step 2: Normalize scores
-    filtered["Strength_score"] = filtered["Strength"] / strength_req
-    filtered["Density_score"] = density_req / filtered["Density"]
-    filtered["Temp_score"] = filtered["Temperature"] / temp_req
-
-    # 🔥 Step 3: Final score calculation
+    # Score calculation
     filtered["Score"] = (
-        filtered["Strength_score"] * 0.5 +
-        filtered["Density_score"] * 0.3 +
-        filtered["Temp_score"] * 0.2
+        (filtered["Strength"] / strength_req) * 0.5 +
+        (density_req / filtered["Density"]) * 0.3 +
+        (filtered["Temperature"] / temp_req) * 0.2
     )
 
     return filtered.sort_values(by="Score", ascending=False)
@@ -41,33 +44,38 @@ def rank_materials(df, strength_req, density_req, temp_req):
 def index():
 
     results = None
-    chart_data = None
+
+    # ✅ Prevent chart crash
+    chart_data = {
+        "labels": [],
+        "strength": [],
+        "density": [],
+        "temperature": []
+    }
 
     if request.method == "POST":
+        try:
+            strength = float(request.form["strength"])
+            density = float(request.form["density"])
+            temperature = float(request.form["temperature"])
 
-        strength = float(request.form["strength"])
-        density = float(request.form["density"])
-        temperature = float(request.form["temperature"])
+            ranked = rank_materials(data.copy(), strength, density, temperature)
+            results = ranked.head(5)
 
-        ranked = rank_materials(data.copy(), strength, density, temperature)
+            # Chart data
+            chart_data = {
+                "labels": list(results["Material"]),
+                "strength": list(results["Strength"]),
+                "density": list(results["Density"]),
+                "temperature": list(results["Temperature"])
+            }
 
-        # ✅ Show top 5 best materials
-        results = ranked.head(5)
+        except Exception as e:
+            print("INPUT ERROR:", e)
 
-        # ✅ Safe chart data (avoid error)
-        chart_data = {
-            "labels": list(results["Material"]),
-            "strength": list(results["Strength"]),
-            "density": list(results["Density"]),
-            "temperature": list(results["Temperature"])
-        }
-
-    return render_template(
-        "index.html",
-        tables=results,
-        chart_data=chart_data
-    )
+    return render_template("index.html", tables=results, chart_data=chart_data)
 
 
+# ✅ Required for Render deployment
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
